@@ -1,9 +1,10 @@
-import 'package:get/get.dart';
-
 import 'consts/consts.dart';
 import 'views/Splash_Screen/splashscreen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
   runApp(const MyApp());
 }
 

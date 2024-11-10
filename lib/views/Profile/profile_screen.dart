@@ -1,8 +1,9 @@
-import 'package:e_commerce_app/consts/list.dart';
-import 'package:e_commerce_app/views/Profile/Components/card_details.dart';
-import 'package:e_commerce_app/widgets/bg_widget.dart';
-
+import '../../Controllers/auth_controller.dart';
 import '../../consts/consts.dart';
+import '../../consts/list.dart';
+import '../../widgets/bg_widget.dart';
+import '../Auth/login_screen.dart';
+import 'Components/card_details.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -55,7 +56,11 @@ class ProfileScreen extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(5))),
                             side: const WidgetStatePropertyAll(
                                 BorderSide(color: whiteColor))),
-                        onPressed: () {},
+                        onPressed: () async {
+                          await Get.put(AuthController())
+                              .signoutMethod(context);
+                          Get.offAll(() => const LoginScreen());
+                        },
                         child: logOut.text.fontFamily(semibold).white.make())
                   ],
                 ),

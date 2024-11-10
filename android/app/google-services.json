@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1008310544345",
+    "project_id": "zonify-e25f1",
+    "storage_bucket": "zonify-e25f1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1008310544345:android:ca8e8248175d40f9255bc8",
+        "android_client_info": {
+          "package_name": "com.example.e_commerce_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTltgDgZyYWdM6VLLWFQfPZn5Hs4u1wU4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

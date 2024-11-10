@@ -1,5 +1,4 @@
-import 'package:get/get.dart';
-
+import '../../Controllers/auth_controller.dart';
 import '../../consts/consts.dart';
 import '../../consts/list.dart';
 import '../../widgets/applogo_widgets.dart';
@@ -14,6 +13,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var controller = Get.put(AuthController());
     return bgWidget(Scaffold(
       resizeToAvoidBottomInset: false,
       body: Center(
@@ -27,9 +27,11 @@ class LoginScreen extends StatelessWidget {
             Column(
               children: [
                 //Email Text field
-                customTextField(email, emailhint, null),
+                customTextField(
+                    email, emailhint, controller.emailController, false),
                 //Password Text field
-                customTextField(password, passwordhint, null),
+                customTextField(password, passwordhint,
+                    controller.passwordController, true),
                 //Forget Button
                 Align(
                     alignment: Alignment.centerRight,
@@ -42,8 +44,16 @@ class LoginScreen extends StatelessWidget {
                     color: redColor,
                     title: login,
                     textColor: whiteColor,
-                    onPressed: () {
-                      Get.to(() => const Home());
+                    onPressed: () async {
+                      await controller
+                          .loginMethod(context: context)
+                          .then((value) {
+                        if (value == null) {
+                          // ignore: use_build_context_synchronously
+                          VxToast.show(context, msg: loggedin);
+                          Get.offAll(() => const Home());
+                        }
+                      });
                     }).box.width(context.screenWidth - 50).make(),
                 5.heightBox,
                 createNewAccount.text.color(fontGrey).make(),

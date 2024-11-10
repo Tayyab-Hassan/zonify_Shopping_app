@@ -1,5 +1,3 @@
-import 'package:get/get.dart';
-
 import '../../consts/consts.dart';
 import '../../widgets/bg_widget.dart';
 import 'items_details.dart';

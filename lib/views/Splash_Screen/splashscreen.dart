@@ -1,5 +1,3 @@
-import 'package:get/get.dart';
-
 import '../../consts/consts.dart';
 import '../../widgets/applogo_widgets.dart';
 import '../Auth/login_screen.dart';

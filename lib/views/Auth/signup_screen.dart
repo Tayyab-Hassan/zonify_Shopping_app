@@ -1,4 +1,7 @@
-import 'package:get/get.dart';
+// ignore_for_file: use_build_context_synchronously
+
+import 'package:e_commerce_app/Controllers/auth_controller.dart';
+import 'package:e_commerce_app/views/Home/home.dart';
 
 import '../../consts/consts.dart';
 import '../../widgets/applogo_widgets.dart';
@@ -15,6 +18,14 @@ class SignupScreen extends StatefulWidget {
 
 class _SignupScreenState extends State<SignupScreen> {
   bool? isCheak = false;
+  var controller = Get.put(AuthController());
+
+  // Text Controller
+
+  var nameCotroller = TextEditingController();
+  var emailCotroller = TextEditingController();
+  var passwordCotroller = TextEditingController();
+  var retypepasswordCotroller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return bgWidget(Scaffold(
@@ -28,10 +39,11 @@ class _SignupScreenState extends State<SignupScreen> {
             "Join The $appname".text.fontFamily(bold).white.size(18).make(),
             15.heightBox,
             Column(children: [
-              customTextField(name, nameHint, null),
-              customTextField(email, emailhint, null),
-              customTextField(password, passwordhint, null),
-              customTextField(retypepass, passwordhint, null),
+              customTextField(name, nameHint, nameCotroller, false),
+              customTextField(email, emailhint, emailCotroller, false),
+              customTextField(password, passwordhint, passwordCotroller, true),
+              customTextField(
+                  retypepass, passwordhint, retypepasswordCotroller, true),
               5.heightBox,
               Row(
                 children: [
@@ -84,13 +96,36 @@ class _SignupScreenState extends State<SignupScreen> {
                 ],
               ),
               myButton(
-                      color: isCheak == true ? redColor : lightGrey,
-                      title: signup,
-                      textColor: whiteColor,
-                      onPressed: () {})
-                  .box
-                  .width(context.screenWidth - 50)
-                  .make(),
+                color: isCheak == true ? redColor : lightGrey,
+                title: signup,
+                textColor: whiteColor,
+                onPressed: () async {
+                  if (isCheak != false) {
+                    try {
+                      await controller
+                          .signUpMethod(
+                        context: context,
+                        email: emailCotroller.text,
+                        password: passwordCotroller.text,
+                      )
+                          .then((value) {
+                        return controller.storeUserData(
+                          name: nameCotroller.text,
+                          email: emailCotroller.text,
+                          password: passwordCotroller.text,
+                        );
+                      }).then((value) {
+                        VxToast.show(context, msg: loggedin);
+                        Get.offAll(() => const Home());
+                      });
+                    } catch (e) {
+                      auth.signOut();
+
+                      VxToast.show(context, msg: e.toString());
+                    }
+                  }
+                },
+              ).box.width(context.screenWidth - 50).make(),
               10.heightBox,
               // Wrapping with gesture detector of Velocity X
               Row(mainAxisAlignment: MainAxisAlignment.center, children: [

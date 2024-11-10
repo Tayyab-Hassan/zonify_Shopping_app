@@ -1,5 +1,3 @@
-import 'package:get/get.dart';
-
 import '../../Controllers/home_controller.dart';
 import '../../consts/consts.dart';
 import '../Cart/cart_screen.dart';
