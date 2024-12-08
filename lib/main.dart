@@ -1,5 +1,5 @@
-import 'consts/consts.dart';
-import 'views/Splash_Screen/splashscreen.dart';
+import 'package:e_commerce_app/Apps/Store/Views/Auth/login_to_store.dart';
+import 'package:e_commerce_app/consts/consts.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
             backgroundColor: Colors.transparent,
           ),
           fontFamily: regular),
-      home: const SplashScreen(),
+      home: const LoginToStore(),
     );
   }
 }

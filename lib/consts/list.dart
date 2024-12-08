@@ -34,15 +34,15 @@ const categoriesTitleList = [
   furniture
 ];
 const categoriesImagesList = [
-  imgFc1,
-  imgFc2,
-  imgFc3,
-  imgFc4,
+  imgc1,
+  imgc2,
+  imgc3,
+  imgc4,
+  imgc5,
   imgFc5,
-  imgFc6,
-  imgFc7,
-  imgFc8,
-  imgFc9,
+  imgc7,
+  imgc8,
+  imgc9,
 ];
 
 //Items Details List
@@ -59,3 +59,7 @@ const itemsDetailsButtonList = [
 
 const profileButtonsList = [orders, wishList, messages];
 const profileButtonsIconList = [icOrder, icHeart, icMessages];
+
+// Payment Methods List
+const paymentMethodsImgList = [imgPaypal, imgStripe, imgCod];
+const paymentMethodsStrigList = [paypal, stripe, cod];

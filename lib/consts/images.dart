@@ -38,7 +38,8 @@ const icProfile = "assets/icons/profile.png";
 const icRefund = "assets/icons/refund.png";
 const icSearch = "assets/icons/search.png";
 const icShop = "assets/icons/shop.png";
-const icSplashBg = "assets/icons/splash_login_registration_background_image.png";
+const icSplashBg =
+    "assets/icons/splash_login_registration_background_image.png";
 const icSquareLogo = "assets/icons/square_logo.png";
 const icTodaysDeal = "assets/icons/todays_deal.png";
 const icTopCategories = "assets/icons/top_categories.png";
@@ -48,6 +49,10 @@ const icTwitterLogo = "assets/icons/twitter_logo.png";
 const icWallet = "assets/icons/wallet.png";
 const icWhiteTick = "assets/icons/white_tick.png";
 const icWholeSale = "assets/icons/wholesale.png";
+const icConfrim = "assets/icons/confrim.png";
+const icDelivery = "assets/icons/icDelivery.png";
+const iclike = "assets/icons/iclike.png";
+const icRectangleFram = "assets/icons/rectangle.png";
 
 //images
 
@@ -73,6 +78,14 @@ const imgFc7 = "assets/images/fc7.jpeg";
 const imgFc8 = "assets/images/fc8.jpeg";
 const imgFc9 = "assets/images/fc9.jpeg";
 const imgFc10 = "assets/images/fc10.jpg";
+const imgc1 = "assets/images/imgc1.png";
+const imgc2 = "assets/images/imgc2.png";
+const imgc3 = "assets/images/imgc3.png";
+const imgc4 = "assets/images/imgc4.png";
+const imgc5 = "assets/images/imgc5.png";
+const imgc7 = "assets/images/imgc7.png";
+const imgc8 = "assets/images/imgc8.png";
+const imgc9 = "assets/images/imgc9.png";
 const imgFd1 = "assets/images/fd1.jpg";
 const imgFd2 = "assets/images/fd2.jpg";
 const imgFd3 = "assets/images/fd3.jpg";
@@ -128,3 +141,14 @@ const imgStripe = "assets/images/stripe.png";
 const imgTwocheckout = "assets/images/twocheckout.png";
 const imgVogue = "assets/images/vogue.png";
 const imgWallet = "assets/images/wallet.png";
+
+// animations Loties
+const lWomenDress = "assets/animations/womenDress.json";
+const lmenCloth = "assets/animations/menCloth.json";
+const lcomputers = "assets/animations/computers.json";
+const lcars = "assets/animations/cars.json";
+const lkids = "assets/animations/kids.json";
+const lsports = "assets/animations/sports.json";
+const lbeauty = "assets/animations/beauty.json";
+const lmobiles = "assets/animations/mobiles.json";
+const lfurniture = "assets/animations/furniture.json";

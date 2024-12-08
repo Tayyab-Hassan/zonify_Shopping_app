@@ -6,9 +6,12 @@ const nameHint = "Your Name";
 const email = "Email";
 const emailhint = "YouEmail@Admin.com";
 const password = "Password";
+const oldPassword = "Old Password";
+const newPassword = "New Password";
+const oldPasswordHint = "Enter Old Password";
 const passwordhint = "********";
 const retypepass = "Retype Password";
-const forgetPassword = "Forget Password";
+const forgotPassword = "Forgot Password";
 const loggedin = 'Logged in Successfully';
 const loggedoout = 'Logged out Successfully';
 const login = "Log In";
@@ -18,6 +21,9 @@ const loginWith = 'Log in With';
 const privacyPolicy = "Privacy Policy";
 const termAndCondition = 'Term and Conditions';
 const alreadyHaveAccount = "Already have an  Account? ";
+const sellerappname = "Zonify Store",
+    welcome = "Hi, Welcome to",
+    anyProblem = "In case of any difficulty, contact administration";
 //Home Strings
 const home = 'Home',
     categories = 'Categories',
@@ -46,7 +52,7 @@ const womenClothing = 'Women Clothing',
     autoMobile = 'AutoMobile',
     kidtoys = 'Kids & Toys',
     sports = 'Sports',
-    jewelery = 'Jewelery',
+    jewelery = 'Jewelry',
     cellPhone = 'Cellphone & Tab',
     furniture = 'Furniture';
 
@@ -64,3 +70,5 @@ const logOut = 'Log Out',
     wishList = 'My Wishlist',
     orders = 'My Orders',
     messages = 'Messages';
+// Payment Methods Strings
+const paypal = "Paypal", stripe = "Stripe", cod = "Cash on delivery";

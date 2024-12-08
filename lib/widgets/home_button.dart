@@ -1,4 +1,4 @@
-import '../consts/consts.dart';
+import 'package:e_commerce_app/consts/consts.dart';
 
 Widget homeButtons({width, height, icon, String? tile, onPress}) {
   return Column(

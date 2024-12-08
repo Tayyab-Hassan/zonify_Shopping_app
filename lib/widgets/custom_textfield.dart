@@ -1,6 +1,6 @@
-import '../consts/consts.dart';
+import 'package:e_commerce_app/consts/consts.dart';
 
-Widget customTextField(String? title, String? hint, controller, isPass) {
+Widget customTextField({String? title, String? hint, controller, isPass}) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [

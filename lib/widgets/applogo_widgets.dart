@@ -1,4 +1,4 @@
-import '../consts/consts.dart';
+import 'package:e_commerce_app/consts/consts.dart';
 
 Widget applogoWidget() {
 //USING VILOCITY_X
