@@ -11,7 +11,7 @@ const newPassword = "New Password";
 const oldPasswordHint = "Enter Old Password";
 const passwordhint = "********";
 const retypepass = "Retype Password";
-const forgotPassword = "Forgot Password";
+const forgotPassword = "Forgot Password ?";
 const loggedin = 'Logged in Successfully';
 const loggedoout = 'Logged out Successfully';
 const login = "Log In";
@@ -72,3 +72,27 @@ const logOut = 'Log Out',
     messages = 'Messages';
 // Payment Methods Strings
 const paypal = "Paypal", stripe = "Stripe", cod = "Cash on delivery";
+
+// Seller App String
+const dashboard = 'Dashboard',
+    products = 'Products',
+    sOrder = 'Orders',
+    rating = 'Rating',
+    totalSales = 'Total Sales',
+    unpaid = 'Unpaid',
+    feactured = 'Featured',
+    edit = 'Edit',
+    remove = 'Remove',
+    setting = 'Setting';
+
+// Shop Setting Strings
+const shopnameHint = 'eg. Vendor Name',
+    shopName = 'Shop Name',
+    shopDescHint = 'Enter Your Shop description',
+    shopWebsiteHint = 'eg. Vendor Email.com',
+    shopMobileHint = 'eg. +92#######',
+    shopAddressHint = 'Enter Your Shop Address',
+    description = 'Description',
+    shopeMobile = 'Shop Mobile',
+    shopWebSite = 'Shop Website',
+    shopAddress = 'Shop Address';

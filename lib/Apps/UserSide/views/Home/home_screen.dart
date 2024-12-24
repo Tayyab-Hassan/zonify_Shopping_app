@@ -151,12 +151,13 @@ class HomeScreen extends StatelessWidget {
                                   featuerButton(
                                       title: featuerTitles2[index],
                                       icon: featuerImages2[index]),
+                                  20.heightBox,
                                 ],
                               )).toList(),
                     ),
                   ),
                   //Featuers Products
-                  20.heightBox,
+
                   Stack(children: [
                     Image.asset(
                       icSplashBg,

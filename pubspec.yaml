@@ -1,13 +1,11 @@
 name: e_commerce_app
 description: "A new Flutter project."
-publish_to: 'none' 
-
+publish_to: 'none'
 
 version: 1.0.0+1
 
 environment:
   sdk: ^3.5.0
-
 
 dependencies:
   cloud_firestore: ^5.4.5
@@ -18,6 +16,7 @@ dependencies:
   firebase_storage: ^12.3.5
   flutter:
     sdk: flutter
+  flutter_colorpicker: ^1.1.0
   get: ^4.6.6
   http: ^1.2.2
   image: ^4.3.0
@@ -30,9 +29,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-
 flutter:
-
 
   uses-material-design: true
 

@@ -1,26 +1,47 @@
 import 'package:e_commerce_app/consts/consts.dart';
 
-Widget customTextField({String? title, String? hint, controller, isPass}) {
+Widget customTextField(
+    {String? title,
+    String? hint,
+    suffix,
+    prefix,
+    controller,
+    isFilled = true,
+    isPass,
+    isDes = false,
+    textColor = redColor,
+    borderColor = redColor}) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      title!.text.color(redColor).fontFamily(semibold).size(16).make(),
+      title!.text.color(textColor).fontFamily(semibold).size(16).make(),
       5.heightBox,
-      TextFormField(
-        obscureText: isPass,
-        controller: controller,
-        decoration: InputDecoration(
-            hintText: hint,
-            hintStyle: const TextStyle(
-              fontFamily: semibold,
-              color: textfieldGrey,
+      Row(
+        children: [
+          Container(
+            child: prefix,
+          ),
+          10.widthBox,
+          Expanded(
+            child: TextFormField(
+              maxLines: isDes ? 4 : 1,
+              obscureText: isPass,
+              controller: controller,
+              decoration: InputDecoration(
+                  hintText: hint,
+                  hintStyle: const TextStyle(
+                    fontFamily: semibold,
+                    color: fontGrey,
+                  ),
+                  isDense: true,
+                  fillColor: lightGrey,
+                  filled: isFilled,
+                  border: InputBorder.none,
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: borderColor))),
             ),
-            isDense: true,
-            fillColor: lightGrey,
-            filled: true,
-            border: InputBorder.none,
-            focusedBorder: const OutlineInputBorder(
-                borderSide: BorderSide(color: redColor))),
+          ),
+        ],
       ),
       5.heightBox
     ],

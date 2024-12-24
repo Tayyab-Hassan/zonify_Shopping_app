@@ -44,8 +44,8 @@ class ProfileScreen extends StatelessWidget {
                           padding: const EdgeInsets.all(8.0),
                           child: Align(
                             alignment: Alignment.topRight,
-                            child: const Icon(
-                              Icons.edit,
+                            child: Image.asset(
+                              icEditProfile,
                               color: whiteColor,
                             ).onTap(() {
                               controller.nameController.text = data['name'];
