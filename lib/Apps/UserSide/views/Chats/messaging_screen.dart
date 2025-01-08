@@ -40,8 +40,8 @@ class MessagsScreen extends StatelessWidget {
                                   onTap: () {
                                     Get.to(() => const ChatScreen(),
                                         arguments: [
-                                          data[index]['friend_name'],
-                                          data[index]['toId']
+                                          data[index]['seller_name'],
+                                          data[index]['sellerID']
                                         ]);
                                   },
                                   leading: CircleAvatar(
@@ -53,7 +53,7 @@ class MessagsScreen extends StatelessWidget {
                                       color: whiteColor,
                                     ),
                                   ),
-                                  title: "${data[index]['friend_name']}"
+                                  title: "${data[index]['seller_name']}"
                                       .text
                                       .fontFamily(semibold)
                                       .color(darkFontGrey)

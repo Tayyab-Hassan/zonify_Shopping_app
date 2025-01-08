@@ -1,8 +1,9 @@
 import 'package:e_commerce_app/Apps/Store/Views/Chats/seller_chat.dart';
-import 'package:e_commerce_app/Services/firestore_services.dart';
+import 'package:e_commerce_app/Services/store_services.dart';
 import 'package:e_commerce_app/consts/consts.dart';
 import 'package:e_commerce_app/widgets/loading_indicator.dart';
 import 'package:e_commerce_app/widgets/text_style.dart';
+import 'package:intl/intl.dart' as intl;
 
 class ShopMessagsScreen extends StatelessWidget {
   const ShopMessagsScreen({super.key});
@@ -19,7 +20,7 @@ class ShopMessagsScreen extends StatelessWidget {
       ),
       backgroundColor: whiteColor,
       body: StreamBuilder(
-          stream: FirestoreServices.getAllChats(),
+          stream: StoreServices.getAllChats(),
           builder:
               (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (!snapshot.hasData) {
@@ -37,13 +38,17 @@ class ShopMessagsScreen extends StatelessWidget {
                           physics: BouncingScrollPhysics(),
                           itemCount: data.length,
                           itemBuilder: (BuildContext context, int index) {
+                            var t = data[index]['created_on'] == null
+                                ? DateTime.now()
+                                : data[index]['created_on'].toDate();
+                            var time = intl.DateFormat("h:mma").format(t);
                             return Card(
                               child: ListTile(
                                 onTap: () {
                                   Get.to(() => const SellerChatScreen(),
                                       arguments: [
-                                        data[index]['friend_name'],
-                                        data[index]['toId']
+                                        data[index]['customer_name'],
+                                        data[index]['customerID']
                                       ]);
                                 },
                                 leading: CircleAvatar(
@@ -55,15 +60,15 @@ class ShopMessagsScreen extends StatelessWidget {
                                     color: whiteColor,
                                   ),
                                 ),
-                                title: "${data[index]['friend_name']}"
+                                title: "${data[index]['customer_name']}"
                                     .text
                                     .fontFamily(semibold)
                                     .color(purpleColor)
                                     .make(),
                                 subtitle:
                                     "${data[index]['last_msg']}".text.make(),
-                                trailing: normalText(
-                                    text: "10:45 PM", color: darkFontGrey),
+                                trailing:
+                                    normalText(text: time, color: darkFontGrey),
                               ),
                             );
                           }))

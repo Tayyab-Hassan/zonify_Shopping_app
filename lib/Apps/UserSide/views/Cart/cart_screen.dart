@@ -4,6 +4,7 @@ import 'package:e_commerce_app/Services/firestore_services.dart';
 import 'package:e_commerce_app/consts/consts.dart';
 import 'package:e_commerce_app/widgets/basic_button.dart';
 import 'package:e_commerce_app/widgets/loading_indicator.dart';
+import 'package:e_commerce_app/widgets/text_style.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
@@ -72,15 +73,13 @@ class CartScreen extends StatelessWidget {
                                           .fontFamily(semibold)
                                           .size(16)
                                           .make(),
-                                  subtitle: "${data[index]['tPrice']}"
-                                      .numCurrency
-                                      .text
-                                      .fontFamily(semibold)
-                                      .color(redColor)
-                                      .make(),
+                                  subtitle: normalText(
+                                      text: currencyFormat
+                                          .format(data[index]['tPrice']),
+                                      color: redColor),
                                   trailing: IconButton(
                                       onPressed: () {
-                                        // FirestoreServices.deleteDocument()
+                                        controller.removeCart(data[index].id);
                                       },
                                       icon: Image.asset(
                                         icTrash,
@@ -91,15 +90,11 @@ class CartScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          "Total price"
-                              .text
-                              .fontFamily(semibold)
-                              .color(darkFontGrey)
-                              .make(),
-                          controller.totalP.value.numCurrency.text
-                              .fontFamily(semibold)
-                              .color(redColor)
-                              .make(),
+                          normalText(text: 'Total Price', color: darkFontGrey),
+                          normalText(
+                              text: currencyFormat
+                                  .format(controller.totalP.value),
+                              color: redColor),
                         ],
                       )
                           .box

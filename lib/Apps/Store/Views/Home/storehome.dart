@@ -1,8 +1,8 @@
-import 'package:e_commerce_app/Apps/Store/Controllers/store_home_cont.dart';
+import 'package:e_commerce_app/Apps/Store/Controllers/store_auth_controller.dart';
 import 'package:e_commerce_app/Apps/Store/Views/Home/dashboard.dart';
 import 'package:e_commerce_app/Apps/Store/Views/Orders/orders_screen_seller.dart';
 import 'package:e_commerce_app/Apps/Store/Views/Products/products_screen_seller.dart';
-import 'package:e_commerce_app/Apps/Store/Views/Profile/profile_scr.dart';
+import 'package:e_commerce_app/Apps/Store/Views/Profile/store_profile_scr.dart';
 import 'package:e_commerce_app/Apps/UserSide/views/Profile/Components/exit_dialog.dart';
 import 'package:e_commerce_app/consts/consts.dart';
 

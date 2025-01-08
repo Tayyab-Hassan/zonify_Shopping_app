@@ -2,9 +2,8 @@ import 'package:e_commerce_app/consts/consts.dart';
 import 'package:e_commerce_app/widgets/text_style.dart';
 
 class PorductsDetailsSeller extends StatelessWidget {
-  const PorductsDetailsSeller({
-    super.key,
-  });
+  final dynamic data;
+  const PorductsDetailsSeller({super.key, this.data});
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +23,7 @@ class PorductsDetailsSeller extends StatelessWidget {
           title: boldText(text: "Products Details", size: 16.0),
         ),
         body: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Expanded(
                 child: Padding(
@@ -35,13 +35,12 @@ class PorductsDetailsSeller extends StatelessWidget {
                     // Swipper Section...
                     VxSwiper.builder(
                         autoPlay: true,
-                        height: 350,
                         aspectRatio: 16 / 9,
-                        itemCount: 3,
+                        itemCount: data['p_images'].length,
                         viewportFraction: 1.0,
                         itemBuilder: (context, index) {
-                          return Image.asset(
-                            imgP7,
+                          return Image.network(
+                            data['p_images'][index],
                             width: double.infinity,
                             fit: BoxFit.contain,
                           );
@@ -49,21 +48,23 @@ class PorductsDetailsSeller extends StatelessWidget {
                     10.heightBox,
                     // Title & Deatails Sections...
                     boldText(
-                        text: "Product Title", color: Colors.black, size: 18.0),
+                        text: data['p_name'], color: Colors.black, size: 18.0),
                     5.heightBox,
                     Row(
                       children: [
                         boldText(
-                            text: "Category", color: darkFontGrey, size: 16.0),
+                            text: data['p_category'],
+                            color: darkFontGrey,
+                            size: 16.0),
                         10.widthBox,
-                        normalText(text: "Subcategory", color: fontGrey)
+                        normalText(text: data['p_subcategory'], color: fontGrey)
                       ],
                     ),
                     10.heightBox,
                     //Rating...
                     VxRating(
                       isSelectable: false,
-                      value: 3,
+                      value: data['p_rating'],
                       onRatingUpdate: (value) {},
                       normalColor: textfieldGrey,
                       selectionColor: golden,
@@ -72,7 +73,10 @@ class PorductsDetailsSeller extends StatelessWidget {
                       count: 5,
                     ),
                     10.heightBox,
-                    boldText(text: "\$124.0", color: darkFontGrey, size: 16.0),
+                    boldText(
+                        text: currencyFormat.format(data['p_price']),
+                        color: darkFontGrey,
+                        size: 16.0),
 
                     10.heightBox,
 
@@ -84,15 +88,18 @@ class PorductsDetailsSeller extends StatelessWidget {
                           children: [
                             SizedBox(
                               width: 100,
-                              child: "Color:".text.color(textfieldGrey).make(),
+                              child: normalText(
+                                  text: 'Color :',
+                                  size: 16.0,
+                                  color: darkFontGrey),
                             ),
                             Row(
                               children: List.generate(
-                                  4,
+                                  data['p_colors'].length,
                                   (index) => VxBox()
                                       .size(40, 40)
                                       .roundedFull
-                                      .color(Vx.randomColor)
+                                      .color(Color(data['p_colors'][index]))
                                       .margin(const EdgeInsets.symmetric(
                                           horizontal: 4))
                                       .make()),
@@ -111,6 +118,9 @@ class PorductsDetailsSeller extends StatelessWidget {
                                   color: darkFontGrey,
                                   size: 16.0),
                             ),
+                            50.widthBox,
+                            normalText(
+                                text: data['p_quantity'], color: fontGrey)
                           ],
                         ).box.padding(const EdgeInsets.all(8)).make(),
                       ],
@@ -118,16 +128,13 @@ class PorductsDetailsSeller extends StatelessWidget {
 
                     //Descripiton section...
                     10.heightBox,
-                    "Description"
-                        .text
-                        .color(darkFontGrey)
-                        .fontFamily(semibold)
-                        .make(),
-                    10.heightBox,
                     boldText(
-                        text: "Product Description",
-                        color: darkFontGrey,
-                        size: 16.0),
+                        text: "Description", color: darkFontGrey, size: 16.0),
+                    10.heightBox,
+                    normalText(
+                      text: data['p_description'],
+                      color: fontGrey,
+                    ),
 
                     // here Is Seller Produts Details UI is completed...
                   ],

@@ -3,6 +3,7 @@
 import 'package:e_commerce_app/Services/firestore_services.dart';
 import 'package:e_commerce_app/consts/consts.dart';
 import 'package:e_commerce_app/widgets/loading_indicator.dart';
+import 'package:e_commerce_app/widgets/text_style.dart';
 
 class WishListScreen extends StatelessWidget {
   const WishListScreen({super.key});
@@ -51,12 +52,10 @@ class WishListScreen extends StatelessWidget {
                                 .fontFamily(semibold)
                                 .size(16)
                                 .make(),
-                            subtitle: "${data[index]['p_price']}"
-                                .numCurrency
-                                .text
-                                .fontFamily(semibold)
-                                .color(redColor)
-                                .make(),
+                            subtitle: normalText(
+                                text: currencyFormat
+                                    .format(data[index]['p_price']),
+                                color: redColor),
                             trailing: IconButton(
                                 onPressed: () async {
                                   await firestore

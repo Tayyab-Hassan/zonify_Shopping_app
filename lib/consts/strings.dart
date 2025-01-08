@@ -17,6 +17,7 @@ const loggedoout = 'Logged out Successfully';
 const login = "Log In";
 const signup = 'Sign Up';
 const createNewAccount = 'or, Create a New Account';
+const createNewStore = 'or, Create a New Store Account';
 const loginWith = 'Log in With';
 const privacyPolicy = "Privacy Policy";
 const termAndCondition = 'Term and Conditions';
@@ -69,7 +70,9 @@ const vedio = "Vedio",
 const logOut = 'Log Out',
     wishList = 'My Wishlist',
     orders = 'My Orders',
-    messages = 'Messages';
+    messages = 'Messages',
+    gotoHome = 'Go To Home',
+    mystore = 'My Store';
 // Payment Methods Strings
 const paypal = "Paypal", stripe = "Stripe", cod = "Cash on delivery";
 

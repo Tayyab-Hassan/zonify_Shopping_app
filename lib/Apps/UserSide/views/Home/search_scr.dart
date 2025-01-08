@@ -3,6 +3,7 @@ import 'package:e_commerce_app/Apps/UserSide/views/Category/items_details.dart';
 import 'package:e_commerce_app/Services/firestore_services.dart';
 import 'package:e_commerce_app/consts/consts.dart';
 import 'package:e_commerce_app/widgets/loading_indicator.dart';
+import 'package:e_commerce_app/widgets/text_style.dart';
 
 class SearchScreen extends StatelessWidget {
   final String? title;
@@ -84,13 +85,11 @@ class SearchScreen extends StatelessWidget {
                                 .color(darkFontGrey)
                                 .make(),
                             10.heightBox,
-                            "${data[index]['p_price']}"
-                                .numCurrency
-                                .text
-                                .fontFamily(semibold)
-                                .color(redColor)
-                                .size(16)
-                                .make()
+                            normalText(
+                                text: currencyFormat
+                                    .format(data[index]['p_price']),
+                                color: redColor,
+                                size: 16.0)
                           ],
                         )
                             .box

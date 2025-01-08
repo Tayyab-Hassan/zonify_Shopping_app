@@ -1,5 +1,9 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'package:e_commerce_app/Apps/Store/Controllers/store_auth_controller.dart';
+import 'package:e_commerce_app/Apps/Store/Views/Auth/create_store.dart';
 import 'package:e_commerce_app/Apps/Store/Views/Home/storehome.dart';
-import 'package:e_commerce_app/Apps/UserSide/Controllers/auth_controller.dart';
+import 'package:e_commerce_app/Apps/UserSide/views/Splash_Screen/splashscreen.dart';
 import 'package:e_commerce_app/consts/consts.dart';
 import 'package:e_commerce_app/widgets/applogo_widgets.dart';
 import 'package:e_commerce_app/widgets/basic_button.dart';
@@ -12,10 +16,22 @@ class LoginToStore extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var controller = Get.put(AuthController());
+    var controller = Get.put(StoreHomeController());
     return SafeArea(
       child: bgWidget(
         child: Scaffold(
+          appBar: AppBar(
+            automaticallyImplyLeading: false,
+            title: normalText(text: welcome, size: 18.0),
+            actions: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: boldText(text: "HOME", size: 16.0).onTap(() {
+                  Get.offAll(() => SplashScreen());
+                }),
+              )
+            ],
+          ),
           resizeToAvoidBottomInset: false,
           body: SingleChildScrollView(
             physics: BouncingScrollPhysics(),
@@ -24,9 +40,6 @@ class LoginToStore extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  30.heightBox,
-                  normalText(text: welcome, size: 18.0),
-                  20.heightBox,
                   Row(children: [
                     Stack(alignment: Alignment.center, children: [
                       applogoWidget(),
@@ -37,7 +50,7 @@ class LoginToStore extends StatelessWidget {
                     10.widthBox,
                     boldText(text: sellerappname, size: 18.0)
                   ]),
-                  50.heightBox,
+                  30.heightBox,
                   normalText(
                       text: "Login to your account",
                       size: 18.0,
@@ -83,33 +96,40 @@ class LoginToStore extends StatelessWidget {
                                       text: forgotPassword, color: redColor))),
                           5.heightBox,
                           //Circular Indicator
-                          controller.isloading.value
+                          controller.isLoading.value
                               ? const CircularProgressIndicator(
                                   valueColor: AlwaysStoppedAnimation(redColor),
                                 )
                               //LogIn Button
                               : myButton(
                                       color: redColor,
-                                      title: login,
+                                      title: "LogIn To Store",
                                       textColor: lightgolden,
-                                      onPressed: () {
-                                        Get.to(() => StoreHome());
+                                      onPressed: () async {
+                                        controller.isLoading(true);
+                                        await controller
+                                            .loginToStore(context: context)
+                                            .then((value) {
+                                          VxToast.show(context,
+                                              msg: "logged In");
+                                          controller.isLoading(false);
+                                          Get.to(() => StoreHome());
+                                        });
                                       })
                                   .box
                                   .width(context.screenWidth - 100)
                                   .make(),
                           5.heightBox,
-                          createNewAccount.text.color(fontGrey).make(),
+                          createNewStore.text.color(fontGrey).make(),
                           5.heightBox,
                           // Singup Button
                           myButton(
-                                  color: lightgolden,
-                                  title: signup,
-                                  textColor: redColor,
-                                  onPressed: () {})
-                              .box
-                              .width(context.screenWidth - 100)
-                              .make(),
+                              color: lightgolden,
+                              title: "Create Store Account",
+                              textColor: redColor,
+                              onPressed: () {
+                                Get.to(() => CreateStoreAccount());
+                              }).box.width(context.screenWidth - 100).make(),
                         ],
                       )
                           .box

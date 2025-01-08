@@ -1,6 +1,7 @@
 import 'package:e_commerce_app/Apps/UserSide/views/Orders/components/order_status.dart';
 import 'package:e_commerce_app/Apps/UserSide/views/Orders/components/placed_order_detail.dart';
 import 'package:e_commerce_app/consts/consts.dart';
+import 'package:e_commerce_app/widgets/text_style.dart';
 import 'package:intl/intl.dart' as intl;
 
 class OrdersDetails extends StatelessWidget {
@@ -101,12 +102,10 @@ class OrdersDetails extends StatelessWidget {
                               children: [
                                 "Total Amount".text.fontFamily(semibold).make(),
                                 20.heightBox,
-                                '${data['total_amount']}'
-                                    .numCurrency
-                                    .text
-                                    .color(redColor)
-                                    .fontFamily(bold)
-                                    .make(),
+                                boldText(
+                                    text: currencyFormat
+                                        .format(data['total_amount']),
+                                    color: redColor),
                                 80.heightBox,
                               ],
                             ),

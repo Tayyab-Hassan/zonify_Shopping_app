@@ -87,7 +87,7 @@ class _CategoriesDetailsState extends State<CategoriesDetails> {
                           } else if (snapshot.data!.docs.isEmpty) {
                             return "No Products Found!"
                                 .text
-                                .color(darkFontGrey)
+                                .color(whiteColor)
                                 .makeCentered();
                           } else {
                             var data = snapshot.data!.docs;
@@ -127,8 +127,8 @@ class _CategoriesDetailsState extends State<CategoriesDetails> {
                                           .color(darkFontGrey)
                                           .make(),
                                       10.heightBox,
-                                      "${data[index]['p_price']}"
-                                          .numCurrency
+                                      currencyFormat
+                                          .format(data[index]['p_price'])
                                           .text
                                           .fontFamily(semibold)
                                           .color(redColor)

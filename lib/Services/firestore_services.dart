@@ -62,7 +62,7 @@ class FirestoreServices {
   static getAllChats() {
     return firestore
         .collection(chatsCollection)
-        .where('fromId', isEqualTo: currentUser!.uid)
+        .where('customerID', isEqualTo: currentUser!.uid)
         .snapshots();
   }
 

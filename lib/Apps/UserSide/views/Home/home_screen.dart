@@ -8,6 +8,7 @@ import 'package:e_commerce_app/consts/consts.dart';
 import 'package:e_commerce_app/consts/list.dart';
 import 'package:e_commerce_app/widgets/home_button.dart';
 import 'package:e_commerce_app/widgets/loading_indicator.dart';
+import 'package:e_commerce_app/widgets/text_style.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -209,13 +210,12 @@ class HomeScreen extends StatelessWidget {
                                               .color(darkFontGrey)
                                               .make(),
                                           10.heightBox,
-                                          "${featuredData[index]['p_price']}"
-                                              .numCurrency
-                                              .text
-                                              .fontFamily(semibold)
-                                              .color(redColor)
-                                              .size(16)
-                                              .make()
+                                          normalText(
+                                              text: currencyFormat.format(
+                                                  featuredData[index]
+                                                      ["p_price"]),
+                                              color: redColor,
+                                              size: 16.0)
                                         ],
                                       )
                                           .box
@@ -318,13 +318,11 @@ class HomeScreen extends StatelessWidget {
                                         .color(darkFontGrey)
                                         .make(),
                                     10.heightBox,
-                                    "${allproductsData[index]['p_price']}"
-                                        .numCurrency
-                                        .text
-                                        .fontFamily(semibold)
-                                        .color(redColor)
-                                        .size(16)
-                                        .make()
+                                    normalText(
+                                        text: currencyFormat.format(
+                                            allproductsData[index]['p_price']),
+                                        color: redColor,
+                                        size: 16.0)
                                   ],
                                 )
                                     .box

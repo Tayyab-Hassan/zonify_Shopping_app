@@ -1,7 +1,7 @@
 import 'package:e_commerce_app/consts/consts.dart';
 
 Widget normalText({text, color = white, size = 14.0}) {
-  return "$text".text.color(color).size(size).make();
+  return "$text".text.color(color).fontFamily(semibold).size(size).make();
 }
 
 Widget boldText({text, color = whiteColor, size = 14.0}) {

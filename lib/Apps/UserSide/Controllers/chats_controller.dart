@@ -9,8 +9,8 @@ class ChatsController extends GetxController {
   }
 
   var isLoading = false.obs;
-  var friendName = Get.arguments[0];
-  var friendId = Get.arguments[1];
+  var receverName = Get.arguments[0];
+  var sellerId = Get.arguments[1];
   var senderName = Get.find<HomeController>().username;
   var currentId = currentUser!.uid;
   var msgConttroller = TextEditingController();
@@ -20,7 +20,7 @@ class ChatsController extends GetxController {
   getChatId() async {
     isLoading(true);
     await chats
-        .where('users', isEqualTo: {friendId: null, currentId: null})
+        .where('users', isEqualTo: {sellerId: null, currentId: null})
         .limit(1)
         .get()
         .then((QuerySnapshot snapshot) {
@@ -30,13 +30,13 @@ class ChatsController extends GetxController {
             chats.add({
               'created_on': null,
               'last_msg': '',
-              'users': {friendId: null, currentId: null},
+              'users': {sellerId: null, currentId: null},
               // Recever Id
-              'toId': '',
-              // Sender Id
-              'fromId': '',
-              'friend_name': friendName,
-              'sender_name': senderName
+              'sellerID': '',
+
+              'customerID': '',
+              'seller_name': receverName,
+              'customer_name': senderName
             }).then((value) {
               {
                 chatDocId = value.id;
@@ -53,8 +53,8 @@ class ChatsController extends GetxController {
       chats.doc(chatDocId).update({
         'created_on': FieldValue.serverTimestamp(),
         'last_msg': msg,
-        'toId': friendId,
-        'fromId': currentId
+        'sellerID': sellerId,
+        'customerID': currentId
       });
 
       // Chats Collection To Store The Messages

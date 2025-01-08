@@ -2,6 +2,7 @@ import 'package:e_commerce_app/Apps/UserSide/views/Orders/orders_details.dart';
 import 'package:e_commerce_app/Services/firestore_services.dart';
 import 'package:e_commerce_app/consts/consts.dart';
 import 'package:e_commerce_app/widgets/loading_indicator.dart';
+import 'package:e_commerce_app/widgets/text_style.dart';
 
 class OrdersScreen extends StatelessWidget {
   const OrdersScreen({super.key});
@@ -45,12 +46,10 @@ class OrdersScreen extends StatelessWidget {
                           .color(redColor)
                           .fontFamily(semibold)
                           .make(),
-                      subtitle: data[index]['total_amount']
-                          .toString()
-                          .numCurrency
-                          .text
-                          .fontFamily(bold)
-                          .make(),
+                      subtitle: boldText(
+                        text:
+                            currencyFormat.format(data[index]['total_amount']),
+                      ),
                       trailing: IconButton(
                           onPressed: () {
                             Get.to(() => OrdersDetails(

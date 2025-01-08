@@ -6,6 +6,7 @@ class CartController extends GetxController {
   var paymentIndex = 0.obs;
   late dynamic productSnapshot;
   var products = [];
+  var vendors = [];
   var isPlacingOrder = false.obs;
   // controller for shipping Details
   var adressController = TextEditingController();
@@ -50,7 +51,8 @@ class CartController extends GetxController {
       'order_on_delivery': false,
       'order_delivered': false,
       'total_amount': totalAmount,
-      'orders': FieldValue.arrayUnion(products)
+      'orders': FieldValue.arrayUnion(products),
+      'vendors': FieldValue.arrayUnion(vendors)
     });
     isPlacingOrder(false);
   }
@@ -58,6 +60,7 @@ class CartController extends GetxController {
   // For Get the Product Details Which is Placed in Order
   getProductDetails() {
     products.clear();
+    vendors.clear();
     for (var i = 0; i < productSnapshot.length; i++) {
       products.add({
         'color': productSnapshot[i]['color'],
@@ -67,6 +70,7 @@ class CartController extends GetxController {
         'tPrice': productSnapshot[i]['tPrice'],
         'vendor_id': productSnapshot[i]['vendor_id'],
       });
+      vendors.add(productSnapshot[i]["vendor_id"]);
     }
   }
 
@@ -75,5 +79,9 @@ class CartController extends GetxController {
     for (var i = 0; i < productSnapshot.length; i++) {
       firestore.collection(cartCollection).doc(productSnapshot[i].id).delete();
     }
+  }
+
+  removeCart(docId) async {
+    await firestore.collection(cartCollection).doc(docId).delete();
   }
 }

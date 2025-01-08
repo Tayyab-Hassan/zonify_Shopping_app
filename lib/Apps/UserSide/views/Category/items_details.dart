@@ -3,6 +3,7 @@ import 'package:e_commerce_app/Apps/UserSide/views/Chats/chat_screen.dart';
 import 'package:e_commerce_app/consts/consts.dart';
 import 'package:e_commerce_app/consts/list.dart';
 import 'package:e_commerce_app/widgets/basic_button.dart';
+import 'package:e_commerce_app/widgets/text_style.dart';
 
 class ItemsDetails extends StatelessWidget {
   final String? title;
@@ -90,7 +91,7 @@ class ItemsDetails extends StatelessWidget {
                     //Rating...
                     VxRating(
                       isSelectable: false,
-                      value: double.parse(data['p_rating']),
+                      value: data['p_rating'],
                       onRatingUpdate: (value) {},
                       normalColor: textfieldGrey,
                       selectionColor: golden,
@@ -99,7 +100,8 @@ class ItemsDetails extends StatelessWidget {
                       count: 5,
                     ),
                     10.heightBox,
-                    "${data['p_price']}"
+                    currencyFormat
+                        .format(data['p_price'])
                         .text
                         .color(redColor)
                         .fontFamily(bold)
@@ -117,7 +119,7 @@ class ItemsDetails extends StatelessWidget {
                             "${data['p_seller']}"
                                 .text
                                 .white
-                                .fontFamily(semibold)
+                                .fontFamily(bold)
                                 .make(),
                             5.heightBox,
                             "In House Brands"
@@ -134,15 +136,17 @@ class ItemsDetails extends StatelessWidget {
                           width: 23,
                           color: redColor,
                         ).onTap(() {
-                          Get.to(() => const ChatScreen(),
-                              arguments: [data['p_seller'], data['vendor_id']]);
+                          Get.to(
+                              arguments: [data['p_seller'], data['vendor_id']],
+                              () => const ChatScreen());
                         })
                       ],
                     )
                         .box
                         .height(60)
                         .padding(const EdgeInsets.symmetric(horizontal: 16))
-                        .color(textfieldGrey)
+                        .color(lightpurpleColor)
+                        .roundedSM
                         .make(),
 
                     // Colors Section....
@@ -154,8 +158,7 @@ class ItemsDetails extends StatelessWidget {
                             children: [
                               SizedBox(
                                 width: 100,
-                                child:
-                                    "Color:".text.color(textfieldGrey).make(),
+                                child: "Color:".text.color(fontGrey).make(),
                               ),
                               Row(
                                 children: List.generate(
@@ -166,6 +169,7 @@ class ItemsDetails extends StatelessWidget {
                                       VxBox()
                                           .size(40, 40)
                                           .roundedFull
+                                          .border(color: Colors.black, width: 1)
                                           .color(Color(data['p_colors'][index])
                                               .withOpacity(1.0))
                                           .margin(const EdgeInsets.symmetric(
@@ -195,10 +199,7 @@ class ItemsDetails extends StatelessWidget {
                             children: [
                               SizedBox(
                                 width: 100,
-                                child: "Quantity:"
-                                    .text
-                                    .color(textfieldGrey)
-                                    .make(),
+                                child: "Quantity:".text.color(fontGrey).make(),
                               ),
                               Obx(() => Row(
                                     children: [
@@ -206,7 +207,7 @@ class ItemsDetails extends StatelessWidget {
                                           onPressed: () {
                                             controller.decreaseQuantity();
                                             controller.calculateTotalPrice(
-                                                int.parse(data['p_price']));
+                                                data['p_price']);
                                           },
                                           icon: const Icon(Icons.remove)),
                                       controller.quantity.value.text
@@ -219,13 +220,13 @@ class ItemsDetails extends StatelessWidget {
                                             controller.increaseQuantity(
                                                 int.parse(data['p_quantity']));
                                             controller.calculateTotalPrice(
-                                                int.parse(data['p_price']));
+                                                data['p_price']);
                                           },
                                           icon: const Icon(Icons.add)),
                                       10.widthBox,
                                       '${data['p_quantity']}'
                                           .text
-                                          .color(textfieldGrey)
+                                          .color(fontGrey)
                                           .make()
                                     ],
                                   )),
@@ -236,16 +237,13 @@ class ItemsDetails extends StatelessWidget {
                             children: [
                               SizedBox(
                                 width: 100,
-                                child:
-                                    "Total:".text.color(textfieldGrey).make(),
+                                child: "Total:".text.color(fontGrey).make(),
                               ),
-                              "${controller.totalPrice.value}"
-                                  .numCurrency
-                                  .text
-                                  .color(redColor)
-                                  .size(16)
-                                  .fontFamily(bold)
-                                  .make()
+                              normalText(
+                                  text: currencyFormat
+                                      .format(controller.totalPrice.value),
+                                  color: redColor,
+                                  size: 16.0)
                             ],
                           ).box.padding(const EdgeInsets.all(8)).make()
                         ],

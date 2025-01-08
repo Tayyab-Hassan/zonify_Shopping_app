@@ -57,8 +57,8 @@ const itemsDetailsButtonList = [
 
 // Profile Buttons List
 
-const profileButtonsList = [orders, wishList, messages];
-const profileButtonsIconList = [icOrder, icHeart, icMessages];
+const profileButtonsList = [orders, wishList, messages, mystore];
+const profileButtonsIconList = [icOrder, icHeart, icMessages, icShop];
 
 // Payment Methods List
 const paymentMethodsImgList = [imgPaypal, imgStripe, imgCod];
@@ -67,13 +67,7 @@ const paymentMethodsStrigList = [paypal, stripe, cod];
 //SELLER APP lISTS
 
 //Pop Menu Title List
-const profileIconList = [
-  icShopSetting,
-  icChat,
-];
-const profileTitleList = [
-  setting,
-  messages,
-];
+const profileIconList = [icShopSetting, icChat, icAppLogo];
+const profileTitleList = [setting, messages, gotoHome];
 const popMenuTitleList = [feactured, edit, remove];
 const popMenuIconList = [icCompaigns, icEdit, icTrash];

@@ -1,4 +1,4 @@
-import 'package:e_commerce_app/Apps/Store/Views/Auth/login_to_store.dart';
+import 'package:e_commerce_app/Apps/UserSide/views/Splash_Screen/splashscreen.dart';
 import 'package:e_commerce_app/consts/consts.dart';
 
 void main() async {
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
             backgroundColor: Colors.transparent,
           ),
           fontFamily: regular),
-      home: const LoginToStore(),
+      home: const SplashScreen(),
     );
   }
 }

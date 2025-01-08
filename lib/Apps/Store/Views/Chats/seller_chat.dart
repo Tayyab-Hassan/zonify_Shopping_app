@@ -1,4 +1,4 @@
-import 'package:e_commerce_app/Apps/UserSide/Controllers/chats_controller.dart';
+import 'package:e_commerce_app/Apps/Store/Controllers/seller_chat_controller.dart';
 import 'package:e_commerce_app/Apps/UserSide/views/Chats/components/sender_bubble.dart';
 import 'package:e_commerce_app/Services/firestore_services.dart';
 import 'package:e_commerce_app/consts/consts.dart';
@@ -9,7 +9,7 @@ class SellerChatScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var controller = Get.put(ChatsController());
+    var controller = Get.put(ChatsSellerController());
     return Scaffold(
         backgroundColor: whiteColor,
         appBar: AppBar(
@@ -67,7 +67,7 @@ class SellerChatScreen extends StatelessWidget {
                 children: [
                   Expanded(
                       child: TextFormField(
-                    controller: controller.msgConttroller,
+                    controller: controller.msgController,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(
                           borderSide: BorderSide(color: textfieldGrey)),
@@ -78,8 +78,9 @@ class SellerChatScreen extends StatelessWidget {
                   )),
                   IconButton(
                       onPressed: () {
-                        controller.sendMessage(controller.msgConttroller.text);
-                        controller.msgConttroller.clear();
+                        controller
+                            .sendMessageSeller(controller.msgController.text);
+                        controller.msgController.clear();
                       },
                       icon: const Icon(
                         Icons.send_rounded,

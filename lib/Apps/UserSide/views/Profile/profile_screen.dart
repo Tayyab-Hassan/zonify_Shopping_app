@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/Apps/Store/Views/Splash/store_splash_scr.dart';
 import 'package:e_commerce_app/Apps/UserSide/Controllers/auth_controller.dart';
 import 'package:e_commerce_app/Apps/UserSide/Controllers/profile_controller.dart';
 import 'package:e_commerce_app/Apps/UserSide/views/Chats/messaging_screen.dart';
@@ -46,6 +47,7 @@ class ProfileScreen extends StatelessWidget {
                             alignment: Alignment.topRight,
                             child: Image.asset(
                               icEditProfile,
+                              width: 25,
                               color: whiteColor,
                             ).onTap(() {
                               controller.nameController.text = data['name'];
@@ -118,7 +120,7 @@ class ProfileScreen extends StatelessWidget {
                             ],
                           ),
                         ),
-
+                        10.heightBox,
                         FutureBuilder(
                             future: FirestoreServices.getAllDoucmentsLength(),
                             builder:
@@ -176,6 +178,9 @@ class ProfileScreen extends StatelessWidget {
                                   case 2:
                                     Get.to(() => const MessagsScreen());
                                     break;
+                                  case 3:
+                                    Get.offAll(() => const StoreSplashScreen());
+                                    break;
                                 }
                               },
                               title: profileButtonsList[index]
@@ -186,6 +191,7 @@ class ProfileScreen extends StatelessWidget {
                               leading: Image.asset(
                                 profileButtonsIconList[index],
                                 width: 22,
+                                color: redColor,
                               ),
                             );
                           },
