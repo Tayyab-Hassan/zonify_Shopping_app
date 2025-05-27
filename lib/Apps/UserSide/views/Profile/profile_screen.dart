@@ -1,3 +1,6 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'package:e_commerce_app/Apps/Store/Controllers/store_auth_controller.dart';
 import 'package:e_commerce_app/Apps/Store/Views/Splash/store_splash_scr.dart';
 import 'package:e_commerce_app/Apps/UserSide/Controllers/auth_controller.dart';
 import 'package:e_commerce_app/Apps/UserSide/Controllers/profile_controller.dart';
@@ -5,13 +8,14 @@ import 'package:e_commerce_app/Apps/UserSide/views/Chats/messaging_screen.dart';
 import 'package:e_commerce_app/Apps/UserSide/views/Orders/orders_screen.dart';
 import 'package:e_commerce_app/Apps/UserSide/views/Profile/Components/card_details.dart';
 import 'package:e_commerce_app/Apps/UserSide/views/Profile/edit_profile_scr.dart';
-import 'package:e_commerce_app/Apps/UserSide/views/Splash_Screen/splashscreen.dart';
 import 'package:e_commerce_app/Apps/UserSide/views/Wishlist/wishlist_scr.dart';
 import 'package:e_commerce_app/Services/firestore_services.dart';
 import 'package:e_commerce_app/consts/consts.dart';
 import 'package:e_commerce_app/consts/list.dart';
 import 'package:e_commerce_app/widgets/bg_widget.dart';
 import 'package:e_commerce_app/widgets/loading_indicator.dart';
+
+import '../Auth/login_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -108,10 +112,34 @@ class ProfileScreen extends StatelessWidget {
                                       side: const WidgetStatePropertyAll(
                                           BorderSide(color: whiteColor))),
                                   onPressed: () async {
-                                    await Get.put(AuthController())
-                                        .signoutMethod(context);
-                                    await Get.offAll(
-                                        () => const SplashScreen());
+                                    final user =
+                                        FirebaseAuth.instance.currentUser;
+
+                                    if (user != null) {
+                                      // Check the sign-in provider
+                                      for (var provider in user.providerData) {
+                                        if (provider.providerId == 'password') {
+                                          // User logged in with Email & Password
+                                          await Get.put(AuthController())
+                                              .signoutMethod(context);
+                                          VxToast.show(context,
+                                              msg:
+                                                  "Signed out from Email & Password");
+                                        } else if (provider.providerId ==
+                                            'google.com') {
+                                          // User logged in with Google
+                                          await Get.put(AuthController())
+                                              .signOutGoogle();
+                                          print("Signed out from Google.");
+                                          VxToast.show(context,
+                                              msg: "Signed out from Google.");
+                                        }
+                                      }
+                                    }
+                                    await Get.put(StoreHomeController())
+                                        .clearStoreLoginState();
+
+                                    Get.offAll(() => LoginScreen());
                                   },
                                   child: logOut.text
                                       .fontFamily(semibold)

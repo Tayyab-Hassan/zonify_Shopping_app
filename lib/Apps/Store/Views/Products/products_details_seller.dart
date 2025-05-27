@@ -42,7 +42,7 @@ class PorductsDetailsSeller extends StatelessWidget {
                           return Image.network(
                             data['p_images'][index],
                             width: double.infinity,
-                            fit: BoxFit.contain,
+                            fit: BoxFit.cover,
                           );
                         }),
                     10.heightBox,

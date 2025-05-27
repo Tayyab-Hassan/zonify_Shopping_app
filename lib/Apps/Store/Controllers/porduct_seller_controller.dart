@@ -29,8 +29,7 @@ class ProductSellerController extends GetxController {
   List<Category> category = [];
   var categoryValue = ''.obs;
   var subCategoryValue = ''.obs;
-  Rx<Color> selectedColor =
-      Color.fromARGB(255, 0, 217, 255).obs; // Initialize with a custom Color
+  Rx<Color> selectedColor = Color.fromARGB(255, 0, 217, 255).obs; // Initialize with a custom Color
   var productColor = <Color>[].obs; // Ensure the list is of type Color
   var storedColors = <int>[].obs;
   var isLoading = false.obs;
@@ -79,7 +78,7 @@ class ProductSellerController extends GetxController {
               color: redColor,
               onPressed: () {
                 productColor.add(selectedColor.value);
-                int colorValue = selectedColor.value.value;
+                int colorValue = selectedColor.value.toARGB32();
                 if (!storedColors.contains(colorValue)) {
                   storedColors.add(colorValue);
                 }
@@ -96,8 +95,7 @@ class ProductSellerController extends GetxController {
 
   pickImage(index, context) async {
     try {
-      final img = await ImagePicker()
-          .pickImage(source: ImageSource.gallery, imageQuality: 80);
+      final img = await ImagePicker().pickImage(source: ImageSource.gallery, imageQuality: 80);
       if (img != null) {
         pImagesList[index] = File(img.path); // Add to the correct index
       }
@@ -129,16 +127,14 @@ class ProductSellerController extends GetxController {
 
 // Helper function to handle the upload to Cloudinary
   Future<String> _uploadToCloudinaryUnsigned(File imageFile) async {
-    final String uploadUrl =
-        "https://api.cloudinary.com/v1_1/$cloudName/image/upload";
+    final String uploadUrl = "https://api.cloudinary.com/v1_1/$cloudName/image/upload";
 
     // Create a multipart request
     var request = http.MultipartRequest("POST", Uri.parse(uploadUrl));
     request.fields['upload_preset'] = 'ys6agetl'; // Your unsigned upload preset
 
     // Add the image file
-    request.files
-        .add(await http.MultipartFile.fromPath('file', imageFile.path));
+    request.files.add(await http.MultipartFile.fromPath('file', imageFile.path));
 
     // Send the request
     var response = await request.send();
@@ -148,8 +144,7 @@ class ProductSellerController extends GetxController {
     if (response.statusCode == 200) {
       return jsonResponse['secure_url']; // URL of the uploaded image
     } else {
-      throw Exception(
-          "Failed to upload image to Cloudinary: ${jsonResponse['error']['message']}");
+      throw Exception("Failed to upload image to Cloudinary: ${jsonResponse['error']['message']}");
     }
   }
 
@@ -181,9 +176,10 @@ class ProductSellerController extends GetxController {
   // Add Product to Featured
   addFeatured(docId, context) async {
     if (isFeatured.value == 0) {
-      await firestore.collection(productsCollection).doc(docId).set(
-          {'featured_id': currentUser!.uid, 'is_featured': true},
-          SetOptions(merge: true));
+      await firestore
+          .collection(productsCollection)
+          .doc(docId)
+          .set({'featured_id': currentUser!.uid, 'is_featured': true}, SetOptions(merge: true));
     } else {
       VxToast.show(context, msg: "You Have Already Featured Porduct");
     }
@@ -191,8 +187,10 @@ class ProductSellerController extends GetxController {
 
   // Remove Product from Featured
   removeFeatured(docId) async {
-    await firestore.collection(productsCollection).doc(docId).set(
-        {'featured_id': "", 'is_featured': false}, SetOptions(merge: true));
+    await firestore
+        .collection(productsCollection)
+        .doc(docId)
+        .set({'featured_id': "", 'is_featured': false}, SetOptions(merge: true));
   }
 
   // Remove Product from the firestore

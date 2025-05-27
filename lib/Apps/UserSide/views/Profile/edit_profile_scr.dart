@@ -129,6 +129,7 @@ class EditProfileScreen extends StatelessWidget {
                                       controller.newPasswordController.text,
                                 );
                                 VxToast.show(context, msg: 'Updated');
+                                Get.back();
                               } else {
                                 VxToast.show(context,
                                     msg: 'Wrong Old Password');

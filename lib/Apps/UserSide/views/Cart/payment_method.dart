@@ -28,8 +28,7 @@ class PaymentMethods extends StatelessWidget {
                   textColor: whiteColor,
                   onPressed: () async {
                     await controller.placeMyOrder(
-                        orderPaymentMethod: paymentMethodsStrigList[
-                            controller.paymentIndex.value],
+                        orderPaymentMethod: paymentMethodsStrigList[controller.paymentIndex.value],
                         totalAmount: controller.totalP.value);
 
                     await controller.clearCart();
@@ -43,11 +42,7 @@ class PaymentMethods extends StatelessWidget {
           color: whiteColor,
         ),
         backgroundColor: redColor,
-        title: "Choose Payment Method"
-            .text
-            .fontFamily(semibold)
-            .color(whiteColor)
-            .make(),
+        title: "Choose Payment Method".text.fontFamily(semibold).color(whiteColor).make(),
       ),
       body: Padding(
         padding: const EdgeInsets.all(12.0),
@@ -64,27 +59,22 @@ class PaymentMethods extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
                           style: BorderStyle.solid,
-                          color: controller.paymentIndex.value == index
-                              ? redColor
-                              : Colors.transparent,
+                          color: controller.paymentIndex.value == index ? redColor : Colors.transparent,
                           width: 4)),
                   child: Stack(alignment: Alignment.topRight, children: [
                     Image.asset(paymentMethodsImgList[index],
                         width: double.infinity,
                         fit: BoxFit.cover,
-                        colorBlendMode: controller.paymentIndex.value == index
-                            ? BlendMode.darken
-                            : BlendMode.color,
+                        colorBlendMode: controller.paymentIndex.value == index ? BlendMode.darken : BlendMode.color,
                         color: controller.paymentIndex.value == index
-                            ? Colors.black.withOpacity(0.4)
+                            ? Colors.black.withAlpha((0.4 * 255).toInt())
                             : Colors.transparent),
                     controller.paymentIndex.value == index
                         ? Transform.scale(
                             scale: 1.3,
                             child: Checkbox(
                                 activeColor: Colors.green,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(50)),
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
                                 value: true,
                                 onChanged: (value) {}),
                           )
@@ -92,11 +82,7 @@ class PaymentMethods extends StatelessWidget {
                     Positioned(
                         bottom: 5,
                         right: 10,
-                        child: paymentMethodsStrigList[index]
-                            .text
-                            .fontFamily(semibold)
-                            .color(whiteColor)
-                            .make()),
+                        child: paymentMethodsStrigList[index].text.fontFamily(semibold).color(whiteColor).make()),
                   ]),
                 ).onTap(() {
                   controller.changeMethodIndex(index);

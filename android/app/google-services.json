@@ -12,7 +12,20 @@
           "package_name": "com.example.e_commerce_app"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "1008310544345-3bba4586br7bnkp294ve0gsbpoco9o2f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.e_commerce_app",
+            "certificate_hash": "3236d903d1246e6a0559ea08cdb96a0c1fe1a6f6"
+          }
+        },
+        {
+          "client_id": "1008310544345-ittqgmebfk9ld2e7rng26bhluv81a3js.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDTltgDgZyYWdM6VLLWFQfPZn5Hs4u1wU4"
@@ -20,7 +33,49 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1008310544345-ittqgmebfk9ld2e7rng26bhluv81a3js.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1008310544345:android:6cf307c19336fb47255bc8",
+        "android_client_info": {
+          "package_name": "com.example.zonify_seller_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1008310544345-i25725ojq0nebaru78j008sj2nm22ret.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.zonify_seller_app",
+            "certificate_hash": "3236d903d1246e6a0559ea08cdb96a0c1fe1a6f6"
+          }
+        },
+        {
+          "client_id": "1008310544345-ittqgmebfk9ld2e7rng26bhluv81a3js.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTltgDgZyYWdM6VLLWFQfPZn5Hs4u1wU4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1008310544345-ittqgmebfk9ld2e7rng26bhluv81a3js.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

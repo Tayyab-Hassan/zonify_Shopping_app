@@ -12,102 +12,108 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var controller = Get.put(CartController());
-    return Scaffold(
-        bottomNavigationBar: SizedBox(
-          height: 60,
-          child: myButton(
+    return Obx(
+      () => Scaffold(
+          bottomNavigationBar: SizedBox(
+            height: 60,
+            child: myButton(
               title: "Proceed to Shipping",
-              color: redColor,
+              color: controller.totalP.value > 0 ? redColor : Colors.grey,
               textColor: whiteColor,
-              onPressed: () {
-                Get.to(() => const ShippingDetails());
-              }),
-        ),
-        backgroundColor: whiteColor,
-        appBar: AppBar(
-          backgroundColor: redColor,
-          automaticallyImplyLeading: false,
-          title: "Shopping Cart"
-              .text
-              .color(whiteColor)
-              .fontFamily(semibold)
-              .make(),
-        ),
-        body: StreamBuilder(
-            stream: FirestoreServices.getCart(currentUser!.uid),
-            builder:
-                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-              if (!snapshot.hasData) {
-                return Center(
-                  child: loadingIndictor(),
-                );
-              } else if (snapshot.data!.docs.isEmpty) {
-                return Center(
-                  child: "Cart Is Empty"
-                      .text
-                      .color(darkFontGrey)
-                      .fontFamily(semibold)
-                      .make(),
-                );
-              } else {
-                var data = snapshot.data!.docs;
-                controller.calulateTotal(data);
-                controller.productSnapshot = data;
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      Expanded(
-                          child: ListView.builder(
-                              itemCount: data.length,
-                              itemBuilder: (BuildContext context, int index) {
-                                return ListTile(
-                                  leading: Image.network(
-                                    "${data[index]["img"]}",
-                                    width: 90,
-                                    fit: BoxFit.cover,
-                                  ),
-                                  title:
-                                      "${data[index]['title']}  (x${data[index]['quantity']})"
-                                          .text
-                                          .fontFamily(semibold)
-                                          .size(16)
-                                          .make(),
-                                  subtitle: normalText(
-                                      text: currencyFormat
-                                          .format(data[index]['tPrice']),
-                                      color: redColor),
-                                  trailing: IconButton(
-                                      onPressed: () {
-                                        controller.removeCart(data[index].id);
-                                      },
-                                      icon: Image.asset(
-                                        icTrash,
-                                        width: 22,
-                                      )),
-                                );
-                              })),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          normalText(text: 'Total Price', color: darkFontGrey),
-                          normalText(
-                              text: currencyFormat
-                                  .format(controller.totalP.value),
-                              color: redColor),
-                        ],
-                      )
-                          .box
-                          .width(context.screenWidth - 60)
-                          .padding(const EdgeInsets.all(12))
-                          .color(lightgolden)
-                          .roundedSM
-                          .make(),
-                      10.heightBox,
-                    ],
-                  ),
-                );
-              }
-            }));
+              onPressed: controller.totalP.value > 0
+                  ? () {
+                      Get.to(() => const ShippingDetails());
+                    }
+                  : null, // Disable button when cart is empty
+            ),
+          ),
+          backgroundColor: whiteColor,
+          appBar: AppBar(
+            backgroundColor: redColor,
+            automaticallyImplyLeading: false,
+            title: "Shopping Cart"
+                .text
+                .color(whiteColor)
+                .fontFamily(semibold)
+                .make(),
+          ),
+          body: StreamBuilder(
+              stream: FirestoreServices.getCart(currentUser!.uid),
+              builder: (BuildContext context,
+                  AsyncSnapshot<QuerySnapshot> snapshot) {
+                if (!snapshot.hasData) {
+                  return Center(
+                    child: loadingIndictor(),
+                  );
+                } else if (snapshot.data!.docs.isEmpty) {
+                  return Center(
+                    child: "Cart Is Empty"
+                        .text
+                        .color(darkFontGrey)
+                        .fontFamily(semibold)
+                        .make(),
+                  );
+                } else {
+                  var data = snapshot.data!.docs;
+                  controller.calulateTotal(data);
+                  controller.productSnapshot = data;
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        Expanded(
+                            child: ListView.builder(
+                                itemCount: data.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return ListTile(
+                                    leading: Image.network(
+                                      "${data[index]["img"]}",
+                                      width: 90,
+                                      fit: BoxFit.cover,
+                                    ),
+                                    title:
+                                        "${data[index]['title']}  (x${data[index]['quantity']})"
+                                            .text
+                                            .fontFamily(semibold)
+                                            .size(16)
+                                            .make(),
+                                    subtitle: normalText(
+                                        text: currencyFormat
+                                            .format(data[index]['tPrice']),
+                                        color: redColor),
+                                    trailing: IconButton(
+                                        onPressed: () {
+                                          controller.removeCart(data[index].id);
+                                        },
+                                        icon: Image.asset(
+                                          icTrash,
+                                          width: 22,
+                                        )),
+                                  );
+                                })),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            normalText(
+                                text: 'Total Price', color: darkFontGrey),
+                            normalText(
+                                text: currencyFormat
+                                    .format(controller.totalP.value),
+                                color: redColor),
+                          ],
+                        )
+                            .box
+                            .width(context.screenWidth - 60)
+                            .padding(const EdgeInsets.all(12))
+                            .color(lightgolden)
+                            .roundedSM
+                            .make(),
+                        10.heightBox,
+                      ],
+                    ),
+                  );
+                }
+              })),
+    );
   }
 }

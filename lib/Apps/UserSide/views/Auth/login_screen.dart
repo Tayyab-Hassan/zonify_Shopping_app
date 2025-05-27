@@ -2,7 +2,6 @@ import 'package:e_commerce_app/Apps/UserSide/Controllers/auth_controller.dart';
 import 'package:e_commerce_app/Apps/UserSide/views/Auth/signup_screen.dart';
 import 'package:e_commerce_app/Apps/UserSide/views/Home/home.dart';
 import 'package:e_commerce_app/consts/consts.dart';
-import 'package:e_commerce_app/consts/list.dart';
 import 'package:e_commerce_app/widgets/applogo_widgets.dart';
 import 'package:e_commerce_app/widgets/basic_button.dart';
 import 'package:e_commerce_app/widgets/bg_widget.dart';
@@ -89,22 +88,26 @@ class LoginScreen extends StatelessWidget {
                     10.heightBox,
                     loginWith.text.color(fontGrey).make(),
                     //LogIn With SoailApp
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: List.generate(
-                          3,
-                          (index) => Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: CircleAvatar(
-                                  backgroundColor: lightGrey,
-                                  radius: 25,
-                                  child: Image.asset(
-                                    socialIconList[index],
-                                    width: 30,
-                                  ),
-                                ),
-                              )),
-                    )
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: controller.isloadingwithGoogle.value
+                          ? const CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation(fontGrey),
+                            )
+                          //LogIn Button
+                          : CircleAvatar(
+                              backgroundColor: lightGrey,
+                              radius: 25,
+                              child: Image.asset(
+                                icGoogleLogo,
+                                width: 30,
+                              ),
+                            ),
+                    ).onTap(() async {
+                      controller.isloadingwithGoogle(true);
+                      await controller.signInWithGoogle();
+                      controller.isloadingwithGoogle(false);
+                    }),
                   ],
                 )
                     .box
@@ -113,7 +116,8 @@ class LoginScreen extends StatelessWidget {
                     .padding(const EdgeInsets.all(16))
                     .width(context.screenWidth - 70)
                     .shadowSm
-                    .make(),
+                    .make()
+                    .onTap(() {}),
               )
             ],
           ),

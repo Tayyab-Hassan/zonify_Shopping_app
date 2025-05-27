@@ -77,7 +77,7 @@ class StoreProductsScreen extends StatelessWidget {
                                     data[index]['p_images'][0],
                                     width: 100,
                                     height: 150,
-                                    fit: BoxFit.contain),
+                                    fit: BoxFit.cover),
                                 title: boldText(
                                     text: '${data[index]['p_name']}',
                                     color: darkFontGrey),

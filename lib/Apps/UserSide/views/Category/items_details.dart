@@ -77,16 +77,12 @@ class ItemsDetails extends StatelessWidget {
                           return Image.network(
                             data['p_images'][index],
                             width: double.infinity,
-                            fit: BoxFit.contain,
+                            fit: BoxFit.cover,
                           );
                         }),
                     10.heightBox,
                     // Title & Deatails Sections...
-                    title!.text
-                        .color(darkFontGrey)
-                        .fontFamily(semibold)
-                        .size(16)
-                        .make(),
+                    title!.text.color(darkFontGrey).fontFamily(semibold).size(16).make(),
                     10.heightBox,
                     //Rating...
                     VxRating(
@@ -100,13 +96,7 @@ class ItemsDetails extends StatelessWidget {
                       count: 5,
                     ),
                     10.heightBox,
-                    currencyFormat
-                        .format(data['p_price'])
-                        .text
-                        .color(redColor)
-                        .fontFamily(bold)
-                        .size(18)
-                        .make(),
+                    currencyFormat.format(data['p_price']).text.color(redColor).fontFamily(bold).size(18).make(),
 
                     10.heightBox,
                     Row(
@@ -116,18 +106,9 @@ class ItemsDetails extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            "${data['p_seller']}"
-                                .text
-                                .white
-                                .fontFamily(bold)
-                                .make(),
+                            "${data['p_seller']}".text.white.fontFamily(bold).make(),
                             5.heightBox,
-                            "In House Brands"
-                                .text
-                                .color(darkFontGrey)
-                                .fontFamily(semibold)
-                                .size(16)
-                                .make(),
+                            "In House Brands".text.color(darkFontGrey).fontFamily(semibold).size(16).make(),
                           ],
                         )),
                         // Messages Section
@@ -136,9 +117,7 @@ class ItemsDetails extends StatelessWidget {
                           width: 23,
                           color: redColor,
                         ).onTap(() {
-                          Get.to(
-                              arguments: [data['p_seller'], data['vendor_id']],
-                              () => const ChatScreen());
+                          Get.to(arguments: [data['p_seller'], data['vendor_id']], () => const ChatScreen());
                         })
                       ],
                     )
@@ -170,17 +149,14 @@ class ItemsDetails extends StatelessWidget {
                                           .size(40, 40)
                                           .roundedFull
                                           .border(color: Colors.black, width: 1)
-                                          .color(Color(data['p_colors'][index])
-                                              .withOpacity(1.0))
-                                          .margin(const EdgeInsets.symmetric(
-                                              horizontal: 4))
+                                          .color(Color(data['p_colors'][index]).withAlpha((1.0 * 255).toInt()))
+                                          .margin(const EdgeInsets.symmetric(horizontal: 4))
                                           .make()
                                           .onTap(() {
                                         controller.changeColor(index);
                                       }),
                                       Visibility(
-                                        visible: index ==
-                                            controller.colorIndex.value,
+                                        visible: index == controller.colorIndex.value,
                                         child: const Icon(
                                           Icons.done_outline_rounded,
                                           color: Colors.white,
@@ -206,8 +182,7 @@ class ItemsDetails extends StatelessWidget {
                                       IconButton(
                                           onPressed: () {
                                             controller.decreaseQuantity();
-                                            controller.calculateTotalPrice(
-                                                data['p_price']);
+                                            controller.calculateTotalPrice(data['p_price']);
                                           },
                                           icon: const Icon(Icons.remove)),
                                       controller.quantity.value.text
@@ -217,17 +192,12 @@ class ItemsDetails extends StatelessWidget {
                                           .make(),
                                       IconButton(
                                           onPressed: () {
-                                            controller.increaseQuantity(
-                                                int.parse(data['p_quantity']));
-                                            controller.calculateTotalPrice(
-                                                data['p_price']);
+                                            controller.increaseQuantity(int.parse(data['p_quantity']));
+                                            controller.calculateTotalPrice(data['p_price']);
                                           },
                                           icon: const Icon(Icons.add)),
                                       10.widthBox,
-                                      '${data['p_quantity']}'
-                                          .text
-                                          .color(fontGrey)
-                                          .make()
+                                      '${data['p_quantity']}'.text.color(fontGrey).make()
                                     ],
                                   )),
                             ],
@@ -240,10 +210,7 @@ class ItemsDetails extends StatelessWidget {
                                 child: "Total:".text.color(fontGrey).make(),
                               ),
                               normalText(
-                                  text: currencyFormat
-                                      .format(controller.totalPrice.value),
-                                  color: redColor,
-                                  size: 16.0)
+                                  text: currencyFormat.format(controller.totalPrice.value), color: redColor, size: 16.0)
                             ],
                           ).box.padding(const EdgeInsets.all(8)).make()
                         ],
@@ -252,11 +219,7 @@ class ItemsDetails extends StatelessWidget {
 
                     //Descripiton section...
                     10.heightBox,
-                    "Description"
-                        .text
-                        .color(darkFontGrey)
-                        .fontFamily(semibold)
-                        .make(),
+                    "Description".text.color(darkFontGrey).fontFamily(semibold).make(),
                     10.heightBox,
                     '${data['p_description']}'.text.color(darkFontGrey).make(),
 
@@ -268,22 +231,15 @@ class ItemsDetails extends StatelessWidget {
                       children: List.generate(
                           itemsDetailsButtonList.length,
                           (index) => ListTile(
-                                title: itemsDetailsButtonList[index]
-                                    .text
-                                    .fontFamily(semibold)
-                                    .color(darkFontGrey)
-                                    .make(),
+                                title:
+                                    itemsDetailsButtonList[index].text.fontFamily(semibold).color(darkFontGrey).make(),
                                 trailing: const Icon(Icons.arrow_forward),
                               )),
                     ),
 
                     // Products you may Like Section
                     20.heightBox,
-                    prouductYouMayLike.text
-                        .fontFamily(bold)
-                        .size(16)
-                        .color(darkFontGrey)
-                        .make(),
+                    prouductYouMayLike.text.fontFamily(bold).size(16).color(darkFontGrey).make(),
                     10.heightBox,
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
@@ -291,8 +247,7 @@ class ItemsDetails extends StatelessWidget {
                           children: List.generate(
                               6,
                               (index) => Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Image.asset(
                                         imgP1,
@@ -300,25 +255,15 @@ class ItemsDetails extends StatelessWidget {
                                         fit: BoxFit.cover,
                                       ),
                                       10.heightBox,
-                                      "HP Laptop 6 Gen"
-                                          .text
-                                          .fontFamily(semibold)
-                                          .color(darkFontGrey)
-                                          .make(),
+                                      "HP Laptop 6 Gen".text.fontFamily(semibold).color(darkFontGrey).make(),
                                       10.heightBox,
-                                      "\$400"
-                                          .text
-                                          .fontFamily(semibold)
-                                          .color(redColor)
-                                          .size(16)
-                                          .make()
+                                      "\$400".text.fontFamily(semibold).color(redColor).size(16).make()
                                     ],
                                   )
                                       .box
                                       .roundedSM
                                       .shadowMd
-                                      .margin(const EdgeInsets.symmetric(
-                                          horizontal: 6))
+                                      .margin(const EdgeInsets.symmetric(horizontal: 6))
                                       .padding(const EdgeInsets.all(8))
                                       .white
                                       .make())),
